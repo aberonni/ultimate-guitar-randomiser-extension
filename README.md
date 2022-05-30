@@ -1,6 +1,6 @@
 # Ultimate Guitar Randomiser
 
-Adds a "Random tab" button to the ["My tabs" page](https://www.ultimate-guitar.com/user/mytabs) on [Ultimate-Guitar.com](https://www.ultimate-guitar.com).
+Adds a "Random tab" button to the ["My tabs" page](https://www.ultimate-guitar.com/user/mytabs) on [Ultimate-Guitar.com](https://www.ultimate-guitar.com). Also adds a keyboard shortcut for opening a random tab: ⌘ + CTRL + R OR ⊞ + CTRL + R.
 
 ![](Screenshot.png)
 
