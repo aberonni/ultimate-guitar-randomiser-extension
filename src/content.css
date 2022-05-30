@@ -1,0 +1,19 @@
+#random-tab-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 16px 32px;
+  padding: 8px;
+  font-size: 12px;
+  color: #ffc600;
+  border-color: #ffc600;
+  background: #111;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 99999;
+}
+
+#random-tab-button:hover {
+  color: white;
+  border-color: white;
+}
