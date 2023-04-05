@@ -6,32 +6,36 @@ function openRandomTab() {
   window.open(tab.getAttribute("href"));
 }
 
-let rBeingPressed = false;
-
-function onKeyDown(event) {
-  if (event.key === "r") {
-    rBeingPressed = true;
-  }
-
-  if (rBeingPressed && event.ctrlKey && event.metaKey) {
-    openRandomTab();
-    rBeingPressed = false;
+function openRandomTabOnMiddleClick(event) {
+  if (event.which == 2) {
+    event.preventDefault();
+    openRandomTab()
   }
 }
-function onKeyUp(event) {
-  if (event.key === "r") {
-    rBeingPressed = false;
+
+function ignoreBrowserMiddleMouseDownEvent(event) {
+  if (event.which == 2) {
+    event.preventDefault();
+  }
+}
+
+function onKeyDown(event) {
+  if (event.key === "r" && event.ctrlKey && event.metaKey) {
+    openRandomTab();
   }
 }
 
 (() => {
+  // Window setup
+  window.addEventListener("keydown", onKeyDown);
+
+  // Button setup
   const button = document.createElement("button");
   button.setAttribute("id", "random-tab-button");
   button.setAttribute("tabindex", "1");
   button.appendChild(document.createTextNode("RANDOM TAB"));
   button.addEventListener("click", openRandomTab);
+  button.addEventListener("auxclick", openRandomTabOnMiddleClick);
+  button.addEventListener("mousedown", ignoreBrowserMiddleMouseDownEvent);
   document.body.appendChild(button);
-
-  window.addEventListener("keydown", onKeyDown, false);
-  window.addEventListener("keyup", onKeyUp, false);
 })();
