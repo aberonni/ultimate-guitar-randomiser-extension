@@ -18,9 +18,23 @@ function onKeyDown(event) {
     rBeingPressed = false;
   }
 }
+
 function onKeyUp(event) {
   if (event.key === "r") {
     rBeingPressed = false;
+  }
+}
+
+function openRandomTabOnMiddleClick(event) {
+  if (event.which == 2) {
+    event.preventDefault();
+    openRandomTab()
+  }
+}
+
+function ignoreBrowserMiddleMouseDownEvent(event) {
+  if (event.which == 2) {
+    event.preventDefault();
   }
 }
 
@@ -30,6 +44,8 @@ function onKeyUp(event) {
   button.setAttribute("tabindex", "1");
   button.appendChild(document.createTextNode("RANDOM TAB"));
   button.addEventListener("click", openRandomTab);
+  button.addEventListener("auxclick", openRandomTabOnMiddleClick);
+  button.addEventListener("mousedown", ignoreBrowserMiddleMouseDownEvent);
   document.body.appendChild(button);
 
   window.addEventListener("keydown", onKeyDown, false);
