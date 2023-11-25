@@ -28,7 +28,7 @@ function onKeyUp(event) {
 function openRandomTabOnMiddleClick(event) {
   if (event.which == 2) {
     event.preventDefault();
-    openRandomTab()
+    openRandomTab();
   }
 }
 
@@ -51,3 +51,9 @@ function ignoreBrowserMiddleMouseDownEvent(event) {
   window.addEventListener("keydown", onKeyDown, false);
   window.addEventListener("keyup", onKeyUp, false);
 })();
+
+chrome.runtime.onMessage.addListener(request => {
+  if (request === "openRandom") {
+    openRandomTab();
+  }
+});
