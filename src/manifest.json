@@ -1,7 +1,7 @@
 {
   "name": "Ultimate Guitar Randomiser",
   "description": "Adds a \"Random Tab\" button to the \"My tabs\" page on Ultimate-Guitar.com",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "manifest_version": 3,
   "icons": {
     "48": "icons/icon48.png",

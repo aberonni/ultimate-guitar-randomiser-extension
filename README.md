@@ -8,6 +8,8 @@ You can open a random tab in one of three ways:
 - Use the keyboard shortcut: ⌘ + CTRL + R OR ⊞ + CTRL + R
 - Click on the extension icon
 
+Note: you must be signed in to Ultimate-Guitar.com for the extension to work correctly.
+
 ![](Screenshot.png)
 
 [Add to Chrome](https://chrome.google.com/webstore/detail/ultimate-guitar-randomise/hakjookdamicmkhpnjamffoifnfkkldj?hl=en)
