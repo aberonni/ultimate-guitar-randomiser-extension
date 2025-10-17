@@ -52,7 +52,10 @@ function ignoreBrowserMiddleMouseDownEvent(event) {
   window.addEventListener("keyup", onKeyUp, false);
 })();
 
-chrome.runtime.onMessage.addListener(request => {
+// Cross-browser compatibility: use browser API if available, fallback to chrome API
+const browserAPI = (typeof browser !== 'undefined') ? browser : chrome;
+
+browserAPI.runtime.onMessage.addListener(request => {
   if (request === "openRandom") {
     openRandomTab();
   }
