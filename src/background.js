@@ -1,15 +1,18 @@
+// Cross-browser compatibility: use browser API if available, fallback to chrome API
+const browserAPI = (typeof browser !== 'undefined') ? browser : chrome;
+
 const myTabsUrl = "https://www.ultimate-guitar.com/user/mytabs";
 
 async function createMyTabsTabIfNotExists() {
-  const [myTabsTab] = await chrome.tabs.query({ url: myTabsUrl });
+  const [myTabsTab] = await browserAPI.tabs.query({ url: myTabsUrl });
 
   if (!myTabsTab) {
-    await chrome.tabs.create({ url: myTabsUrl });
+    await browserAPI.tabs.create({ url: myTabsUrl });
   }
 }
 
 async function openRandomTab() {
-  const [myTabsTab] = await chrome.tabs.query({ url: myTabsUrl });
+  const [myTabsTab] = await browserAPI.tabs.query({ url: myTabsUrl });
 
   if (!myTabsTab) {
     console.error("Tab creation failed. Maybe user is not logged in.");
@@ -22,10 +25,15 @@ async function openRandomTab() {
     return;
   }
 
-  await chrome.tabs.sendMessage(myTabsTab.id, "openRandom");
+  await browserAPI.tabs.sendMessage(myTabsTab.id, "openRandom");
 }
 
-chrome.action.onClicked.addListener(async () => {
-  await createMyTabsTabIfNotExists();
-  openRandomTab();
-});
+// Support both action (Manifest V3) and browserAction (Manifest V2)
+const actionAPI = browserAPI.action || browserAPI.browserAction;
+
+if (actionAPI && actionAPI.onClicked) {
+  actionAPI.onClicked.addListener(async () => {
+    await createMyTabsTabIfNotExists();
+    openRandomTab();
+  });
+}
